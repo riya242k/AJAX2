@@ -1,0 +1,40 @@
+<html>
+    <head>
+
+        <title>AJAX</title>
+        
+        <script>
+            function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    //  document.getElementById("text").innerHTML = this.responseText;
+      console.log(this.responseText);
+    }
+  
+  xhttp.open("GET","https://reqres.in/api/users?/page=2", true);
+  xhttp.send();
+
+  var data=JSON.parse(xhttp.responseText) ;
+  var name="";
+  name += "<table border='1'>";
+  data.forEach(function(value,index){
+    
+             name += '<tr>'+'<td>'+value.id +'</td>'+'<td>'+value.email+'</td>'+'<td>'+value.first_name+'</td>'+'<td>'+value.last_name+'</td>'+'<td>'+value.avatar +'</td>'+'</tr>';
+         })
+        name +="</table>"
+          document.getElementById("text").innerHTML=name;
+        };
+}
+
+</script>
+        </head>
+        <body>
+            <button onclick="loadDoc()">Click Here</button>
+         
+<p id="text"></p>
+                </body>
+                </html>
+
+
+               
